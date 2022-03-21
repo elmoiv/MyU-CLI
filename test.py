@@ -1,4 +1,4 @@
-from myu_connector import MyuDaemon
+from daemon import MyuDaemon
 
 USERNAME = '123456789'
 PASSWORD = 'ABCDEFGHI'
