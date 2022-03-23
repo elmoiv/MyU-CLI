@@ -1,6 +1,6 @@
 import bs4
-from models.course import Course
-from models.semester import Semester
+from ..models.course import Course
+from ..models.semester import Semester
 
 def html_findall(page):
     soup = bs4.BeautifulSoup(

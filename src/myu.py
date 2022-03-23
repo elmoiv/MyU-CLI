@@ -3,9 +3,9 @@ __import__('warnings').filterwarnings("ignore")
 import requests
 import os
 
-from exceptions import LoginFailedException
-from sections.personal_data import PersonalData
-from sections.courses_grades import CoursesGrades
+from .exceptions import LoginFailedException
+from .sections.personal_data import PersonalData
+from .sections.courses_grades import CoursesGrades
 
 BASE_URL = 'https://myu.mans.edu.eg/'
 LOGIN_URL = BASE_URL + 'login'

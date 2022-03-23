@@ -1,5 +1,5 @@
 import matplotlib.pyplot as plt
-from extractors.grades_extractor import CoursesGradesExtractor
+from ..extractors.grades_extractor import CoursesGradesExtractor
 
 class CoursesGrades(CoursesGradesExtractor):
     def __init__(self, data):
@@ -23,4 +23,4 @@ class CoursesGrades(CoursesGradesExtractor):
 
     @property
     def semesters(self):
-        return self.process()
+        return self.__semesters

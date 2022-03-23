@@ -1,4 +1,4 @@
-from extractors.personal_extractor import PersonalDataExtractor
+from ..extractors.personal_extractor import PersonalDataExtractor
 
 PERSONAL_INFO_SEC = 'Personal Info.'
 MILITARY_INFO_SEC = 'Military Data'
