@@ -9,5 +9,8 @@ myu = Myu(USERNAME, PASSWORD)
 print('>>> Conencting to Myu...')
 myu.connect()
 
-print('>>> Openning Moodle...')
-myu.open_moodle()
+print('>>> Getting Courses Grades...')
+grades = myu.get_courses_grades()
+
+print('>>> Plotting Grades...')
+grades.plot_gpa()
