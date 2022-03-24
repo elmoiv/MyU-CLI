@@ -6,6 +6,7 @@ MILITARY_INFO_SEC = 'Military Data'
 class PersonalData(PersonalDataExtractor):
     def __init__(self, data):
         super().__init__(data)
+        __import__('pyperclip').copy(data)
 
     def to_dict(self):
         return {

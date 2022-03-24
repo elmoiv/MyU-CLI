@@ -3,7 +3,8 @@ __import__('warnings').filterwarnings("ignore")
 import requests
 import os
 
-from .exceptions import LoginFailedException
+from .exceptions import LoginFailedException, NoCredentialsException
+from .utils import get_credentials
 from .sections.personal_data import PersonalData
 from .sections.courses_grades import CoursesGrades
 
@@ -14,10 +15,20 @@ MOODLE_URL = BASE_URL + 'moodle/moodle?{}&app_id=48&click_item_id='
 GRADES_URL = BASE_URL + 'education/grades?{}&app_id=4&click_item_id='
 
 class Myu(requests.Session):
-    def __init__(self, username, password):
+    def __init__(self, username=None, password=None, json_path=None):
         super().__init__()
+        
+        # Check for interleacing params
+        if (not username or not password) and not json_path:
+            raise NoCredentialsException('No login credentials found!')
+        
         self.username = username
         self.password = password
+        
+        # Load from json if requested
+        if json_path:
+            self.username, self.password = get_credentials(json_path)
+        
         self.__data = None
         self.__id = None
     
