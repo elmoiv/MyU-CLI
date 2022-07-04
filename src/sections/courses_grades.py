@@ -22,5 +22,12 @@ class CoursesGrades(CoursesGradesExtractor):
         plt.show()
 
     @property
+    def courses_only(self):
+        courses = []
+        for sem in self.__semesters:
+            courses += sem.courses
+        return courses
+
+    @property
     def semesters(self):
         return self.__semesters

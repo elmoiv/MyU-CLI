@@ -7,12 +7,14 @@ from .exceptions import LoginFailedException, NoCredentialsException
 from .utils import get_credentials
 from .sections.personal_data import PersonalData
 from .sections.courses_grades import CoursesGrades
+from .sections.hours_progress import HoursProgress
 
 BASE_URL = 'https://myu.mans.edu.eg/'
 LOGIN_URL = BASE_URL + 'login'
 PROFILE_URL = BASE_URL + 'personal/?{}&app_id=2&click_item_id='
 MOODLE_URL = BASE_URL + 'moodle/moodle?{}&app_id=48&click_item_id='
 GRADES_URL = BASE_URL + 'education/grades?{}&app_id=4&click_item_id='
+HOURS_PROGRESS_URL = BASE_URL + 'education/hrs_progress?{}&app_id=61&click_item_id='
 
 class Myu(requests.Session):
     def __init__(self, username=None, password=None, json_path=None):
@@ -62,7 +64,7 @@ class Myu(requests.Session):
     @property
     def moodle_url(self):
         moodle_raw = self.get(
-            MOODLE_URL.format(self.__id),
+            MOODLE_URL,
             ).text
 
         return moodle_raw.split('url = "')[-1].split('";')[0]
@@ -78,3 +80,7 @@ class Myu(requests.Session):
         grade_resp = self.get(GRADES_URL)
         return CoursesGrades(grade_resp.text)
 
+    def get_hours_progress(self):
+        hours_progress_resp = self.get(HOURS_PROGRESS_URL)
+        # __import__('pyperclip').copy(hours_progress_resp.text)
+        return HoursProgress(hours_progress_resp.text)
